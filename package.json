@@ -1,0 +1,19 @@
+{
+  "name": "weave",
+  "version": "1.0.0",
+  "description": "For when you're too lazy to template.",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd test && node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airgap/weave-npm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airgap/weave-npm/issues"
+  },
+  "homepage": "https://github.com/airgap/weave-npm#readme"
+}
