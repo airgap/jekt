@@ -1,9 +1,9 @@
-var weave = require('..')
+var jekt = require('..')
 function chain(bundles, depth) {
   depth = ~~depth + 1;
   if(bundles.length>0) {
     var bundle = bundles.splice(0,1)[0]
-    weave(bundle,err=>{
+    jekt(bundle,err=>{
       console.log("TEST " + depth, err ? "FAIL" : "PASS", err||'');
       chain(bundles, depth);
     })

@@ -2,7 +2,7 @@ var fs = require('fs'),
     mkdirp = require('mkdirp'),
     pather = require('path');
 
-function weave(params, callback) {
+function jekt(params, callback) {
   var DIRECTORIES = [];
   var FILES = []
   var DEPENDENCIES = {};
@@ -20,12 +20,13 @@ function weave(params, callback) {
       e: ['html', 'js', 'css'],
       i: 'unwoven-site',
       o: 'woven-site',
+      fragile: false
   };
   var CALLBACK;
   if(typeof callback === 'function') CALLBACK = callback;
-  var fragile = !!params.fragile
-  CONF.fragile = !!fragile
   if(typeof params == 'object') {
+    var fragile = !!params.fragile
+    CONF.fragile = !!fragile
     if(typeof params.inputDir == 'string') CONF.i = params.inputDir;
     if(typeof params.outputDir == 'string') CONF.o = params.outputDir;
     if(Array.isArray(params.extensions)) {
@@ -42,7 +43,7 @@ function weave(params, callback) {
   for(var i of ['i', 'o', 't'])CONF[i] = pather.resolve(CONF[i])
   listTree(CONF.i);
 /*
-fs.readFile('weave.json', 'utf-8', (err, bod) => {
+fs.readFile('jekt.json', 'utf-8', (err, bod) => {
   if(bod) {
     //console.log("Conf found!",bod)
     var fileConfig = JSON.parse(bod);
@@ -217,8 +218,6 @@ function passDependencies() {
               if(err)throw err
               for(var k of Object.keys(UNMET_DEPENDENCIES)) {
                 for(d in UNMET_DEPENDENCIES[k]) {
-                  /*if(f=="C:\\Users\\nikki\\documents\\github\\liot-r\\weave\\unwoven-site\\head.html")//&&UNMET_DEPENDENCIES[k][d].name=="/nav.html")
-                    console.log(f,UNMET_DEPENDENCIES[k][d].inputPath)*/
                   //console.log("UNMET K", UNMET_DEPENDENCIES[k], "UNMET D", UNMET_DEPENDENCIES[k][d], "f", f, "OUTD", outify(f))
                   if(UNMET_DEPENDENCIES[k][d].inputPath==f) {
                     //console.log("MATCHES")
@@ -284,8 +283,8 @@ function tryAnotherPass() {
       }
       if(failed) {
         if(CONF.fragile) throw 'Nonexistent dependencies or loop discovered.\n'+t
-        else CALLBACK({err: 'Nonexistent dependencies or loop discovered.', description: t})
-      } else {//
+        else if(typeof CALLBACK === 'function') CALLBACK({err: 'Nonexistent dependencies or loop discovered.', description: t})
+      } else if(typeof CALLBACK === 'function') {//
         CALLBACK()
       }
     }
@@ -293,11 +292,11 @@ function tryAnotherPass() {
 }
 var LAST_STATUS = null
 function updateProgress(){
-  var status = `\rWeaves: ${INTERPOLATED_COUNT} of ${DEPENDENCY_COUNT} | Written: ${WRITTEN_FILE_COUNT} of ${FILES.length}              `;
+  var status = `\rJekts: ${INTERPOLATED_COUNT} of ${DEPENDENCY_COUNT} | Written: ${WRITTEN_FILE_COUNT} of ${FILES.length}              `;
   if(status !=LAST_STATUS) {
     LAST_STATUS = status;
     process.stdout.write(status)
   }
 }
 }
-module.exports = weave;
+module.exports = jekt;

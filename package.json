@@ -1,6 +1,6 @@
 {
-  "name": "weave",
-  "version": "1.0.0",
+  "name": "jekt",
+  "version": "0.1.4",
   "description": "For when you're too lazy to template.",
   "main": "index.js",
   "scripts": {
@@ -8,12 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/airgap/weave-npm.git"
+    "url": "git+https://github.com/airgap/jekt.git"
   },
-  "author": "",
+  "author": "airgap",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/airgap/weave-npm/issues"
+    "url": "https://github.com/airgap/jekt/issues"
   },
-  "homepage": "https://github.com/airgap/weave-npm#readme"
+  "homepage": "https://github.com/airgap/jekt#readme",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "interpolate"
+  ],
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  }
 }
