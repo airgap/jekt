@@ -1,6 +1,6 @@
 {
   "name": "jekt",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "For when you're too lazy to template.",
   "main": "index.js",
   "scripts": {
@@ -24,5 +24,8 @@
   ],
   "dependencies": {
     "mkdirp": "^0.5.1"
+  },
+  "bin": {
+    "jekt": "./cli.js"
   }
 }
