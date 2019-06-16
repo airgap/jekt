@@ -42,26 +42,6 @@ function jekt(params, callback) {
   CONF.t = CONF.o;
   for(var i of ['i', 'o', 't'])CONF[i] = pather.resolve(CONF[i])
   listTree(CONF.i);
-/*
-fs.readFile('jekt.json', 'utf-8', (err, bod) => {
-  if(bod) {
-    //console.log("Conf found!",bod)
-    var fileConfig = JSON.parse(bod);
-    if(fileConfig.directories) {
-      CONF.i = fileConfig.directories.input || CONF.i;
-      CONF.o = fileConfig.directories.output || CONF.o;
-      CONF.t = fileConfig.directories.temp || CONF.t;
-    }
-  }
-  CONF.t = CONF.o;
-  for(var k of ['i','o','t'])
-    CONF[k]= pather.resolve(CONF[k])
-  //console.log(CONF)
-  getArgs();
-  listTree(CONF.i);
-})
-*/
-//var ARGS = ['i', 't', 'o'];
 function getArgs() {
     'use strict';
     var arg, i;
