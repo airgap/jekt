@@ -18,8 +18,6 @@ function jekt(params, callback) {
   var ATREG = /(?:^|[^\\])(?:\\\\)*@@(.+?)(?:(?:\\\\)*@@|$)/gm;
   var CONF = {
       e: ['html', 'js', 'css'],
-      i: 'unwoven-site',
-      o: 'woven-site',
       fragile: false
   };
   var CALLBACK;
@@ -40,6 +38,12 @@ function jekt(params, callback) {
     }
   }
   CONF.t = CONF.o;
+	if(!CONF.i) {
+		throw 'No input directory specified.'
+	}
+	if(!CONF.o) {
+		throw 'No output directory specified.'
+	}
   for(var i of ['i', 'o', 't'])CONF[i] = pather.resolve(CONF[i])
   listTree(CONF.i);
 function getArgs() {

@@ -17,6 +17,10 @@ require('fs').readFile('jekt.json', 'utf-8', (err, bod) => {
   }
 })
 
+if(argv[2]&&argv[2].match(/^-?v$/)) {
+	console.log('Jekt ' + JSON.parse(require('fs').readFileSync('package.json')).version)
+	process.exit()
+}
 for(var i = 2; i < argv.length - 1; i += 2) {
   if(paramNames.includes(argv[i])) args[params[argv[i]]] = argv[i+1];
 }
